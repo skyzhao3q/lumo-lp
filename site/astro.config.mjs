@@ -2,5 +2,5 @@ import { defineConfig } from "astro/config";
 
 export default defineConfig({
   output: "static",
-  site: process.env.PUBLIC_SITE_URL ?? "https://lumo-7u9.pages.dev",
+  site: process.env.PUBLIC_SITE_URL ?? "https://lumo.kaseinopro.com",
 });

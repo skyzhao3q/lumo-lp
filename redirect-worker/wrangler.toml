@@ -1,0 +1,8 @@
+name = "kaseinopro-router"
+main = "src/index.js"
+compatibility_date = "2026-06-27"
+
+routes = [
+  { pattern = "kaseinopro.com/lumo", zone_name = "kaseinopro.com" },
+  { pattern = "kaseinopro.com/lumo/*", zone_name = "kaseinopro.com" }
+]
