@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import FeatureGrid from "../../components/FeatureGrid.astro";
+import ScreenshotShowcase from "../../components/ScreenshotShowcase.astro";
+import PrivacySummary from "../../components/PrivacySummary.astro";
+import Footer from "../../components/Footer.astro";
+import { landingContent } from "../../content/landing";
+
+const locale = "zh-Hans";
+const page = "home";
+const content = landingContent[locale];
+---
+
+<BaseLayout locale={locale} page={page} title={content.metaTitle} description={content.metaDescription}>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="/zh-Hans/">
+        <img class="nav-icon" src="/images/app-icon.png" alt="Lumo" />
+        Lumo
+      </a>
+      <ul class="nav-links">
+        <li><a href="/zh-Hans/privacy/">{content.navPrivacy}</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <Hero content={content} locale={locale} />
+    <FeatureGrid title={content.featuresTitle} features={content.features} />
+
+    <section class="flow">
+      <div class="flow-inner">
+        <h2 class="section-title">{content.flowTitle}</h2>
+        <ol class="flow-steps">
+          {content.flowSteps.map((step) => (
+            <li class="flow-step">
+              <span class="flow-step-num" aria-hidden="true"></span>
+              <p>{step}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <ScreenshotShowcase title={content.screenshotsTitle} screenshots={content.screenshots} />
+    <PrivacySummary title={content.privacyTitle} body={content.privacyBody} />
+
+    <section class="faq">
+      <div class="faq-inner">
+        <h2 class="section-title">{content.faqTitle}</h2>
+        <ul class="faq-list">
+          {content.faq.map((item) => (
+            <li class="faq-item">
+              <p class="faq-question">{item.question}</p>
+              <p class="faq-answer">{item.answer}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <Footer locale={locale} page={page} privacyLabel={content.navPrivacy} />
+</BaseLayout>

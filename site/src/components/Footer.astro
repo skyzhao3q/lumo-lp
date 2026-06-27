@@ -1,0 +1,28 @@
+---
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import type { LocaleCode, PageKind } from "../content/locales";
+import { localizedPath } from "../content/locales";
+
+interface Props {
+  locale: LocaleCode;
+  page: PageKind;
+  privacyLabel: string;
+}
+
+const { locale, page, privacyLabel } = Astro.props;
+const homeHref = localizedPath(locale, "home");
+const privacyHref = localizedPath(locale, "privacy");
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <a class="footer-brand" href={homeHref}>
+      <img class="footer-icon" src="/images/app-icon.png" alt="Lumo" />
+      Lumo
+    </a>
+    <div class="footer-links">
+      <a href={privacyHref}>{privacyLabel}</a>
+      <LanguageSwitcher currentLocale={locale} page={page} />
+    </div>
+  </div>
+</footer>

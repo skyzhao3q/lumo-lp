@@ -1,0 +1,22 @@
+---
+import type { Screenshot } from "../content/landing";
+
+interface Props {
+  title: string;
+  screenshots: Screenshot[];
+}
+
+const { title, screenshots } = Astro.props;
+---
+
+<section class="screenshots">
+  <h2 class="section-title">{title}</h2>
+  <div class="screenshot-grid">
+    {screenshots.map((shot) => (
+      <figure class="screenshot-item">
+        <img src={shot.src} alt={shot.alt} loading="lazy" />
+        <figcaption class="screenshot-label">{shot.label}</figcaption>
+      </figure>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,37 @@
+---
+import type { LandingContent } from "../content/landing";
+import type { LocaleCode } from "../content/locales";
+import { localizedPath } from "../content/locales";
+
+interface Props {
+  content: LandingContent;
+  locale: LocaleCode;
+}
+
+const { content, locale } = Astro.props;
+const privacyHref = localizedPath(locale, "privacy");
+---
+
+<section class="hero">
+  <div class="hero-copy">
+    <p class="hero-eyebrow">{content.heroEyebrow}</p>
+    <h1 class="hero-title">{content.heroTitle}</h1>
+    <p class="hero-body">{content.heroBody}</p>
+    <div class="hero-cta-group">
+      <span class="btn-primary" aria-disabled="true">{content.primaryCta}</span>
+      <a class="btn-secondary" href={privacyHref}>{content.secondaryCta}</a>
+    </div>
+    <p class="hero-note">{content.comingSoonNote}</p>
+  </div>
+  <div class="hero-screenshots" aria-label={content.screenshotsTitle}>
+    {content.screenshots.map((shot, i) => (
+      <div class="hero-screenshot">
+        <img
+          src={shot.src}
+          alt={shot.alt}
+          loading={i === 0 ? "eager" : "lazy"}
+        />
+      </div>
+    ))}
+  </div>
+</section>

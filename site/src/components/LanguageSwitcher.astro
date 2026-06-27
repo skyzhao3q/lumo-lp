@@ -1,0 +1,22 @@
+---
+import { localeCodes, locales, localizedPath, type LocaleCode, type PageKind } from "../content/locales";
+
+interface Props {
+  currentLocale: LocaleCode;
+  page: PageKind;
+}
+
+const { currentLocale, page } = Astro.props;
+---
+
+<nav class="lang-switcher" aria-label="Language">
+  {localeCodes.map((locale) => (
+    <a
+      href={localizedPath(locale, page)}
+      aria-current={locale === currentLocale ? "true" : undefined}
+      lang={locales[locale].htmlLang}
+    >
+      {locales[locale].nativeLabel}
+    </a>
+  ))}
+</nav>
